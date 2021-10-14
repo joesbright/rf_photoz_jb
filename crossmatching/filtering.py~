@@ -1,0 +1,16 @@
+import pandas as pd
+import glob as glob
+
+input_dir = '/projects/b1053/joe/photoz/crossmatching/output/'
+output_dir = '/projects/b1053/joe/photoz/crossmatching/filtered_output/'
+
+input_files = glob.glob(input_dir + '*')
+
+for f in input_files:
+    print('Filtering: {}'.format(f))
+    xmatched = pd.read_csv(f)
+    
+    # only keep primary detections
+    filtered_xmatched = xmatched[xmatched['primaryDetection'] == 1]
+
+    filtered_xmatched.to_csv(output_dir + f.split('/')[-1], index=False)

@@ -20,12 +20,6 @@ panSTARRS_ID_col = 'objid'
 unWISE_reduced = unWISE_data[unWISE_data[unWISE_ID_col].isin(panSTARRS_data[panSTARRS_ID_col])]
 panSTARRS_reduced = panSTARRS_data[panSTARRS_data[panSTARRS_ID_col].isin(unWISE_data[unWISE_ID_col])]
 
-print(unWISE_reduced[unWISE_ID_col])
-print(len(set(unWISE_reduced[unWISE_ID_col])))
-print(panSTARRS_reduced[panSTARRS_ID_col])
-print(len(set(panSTARRS_reduced[panSTARRS_ID_col])))
-
-
 # Now perform the merge
 new_df = pd.merge(unWISE_reduced, panSTARRS_reduced, how='inner', left_on=unWISE_ID_col, right_on=panSTARRS_ID_col)
 
