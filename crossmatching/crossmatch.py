@@ -27,9 +27,11 @@ for panSTARRS_file in glob.glob(panSTARRS_file_loc + '*.csv'):
     # Now perform the merge
     new_df = pd.merge(unWISE_reduced, panSTARRS_reduced, how='inner', left_on=unWISE_ID_col, right_on=panSTARRS_ID_col)
 
-    new_df.to_csv('output/' + panSTARRS_file.split('/')[-1] + '_unwise.csv', index=False)
-
-    print('matching IDs:')
     boolean_series = panSTARRS_data.objid.isin(unWISE_data[unWISE_ID_col])
-    print(len(panSTARRS_data[boolean_series]))
+    print('Found {} matches in {}'.format(len(panSTARRS_data[boolean_series]), panSTARRS_file))
 
+    if len(panSTARRS_data[boolean_series]) > 0:
+        print('Writing output to {}'.format(panSTARRS_file.split('/')[-1] + '_unwise.csv'))
+        new_df.to_csv('output/' + panSTARRS_file.split('/')[-1] + '_unwise.csv', index=False)
+    else:
+        print('No matches. Not writing.')
