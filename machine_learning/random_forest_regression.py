@@ -7,6 +7,7 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 import joblib as joblib
 import glob as glob
 import os as os
+from matplotlib.colors import LogNorm
 
 
 data_input_folder = '/projects/b1053/joe/photoz/crossmatching/filtered_output/*.csv'
@@ -50,8 +51,6 @@ z_std = np.sqrt(scaler.var_[-1])
 # Split our data set into a training and testing set in order to test our model performance
 X_train, X_test, y_train, y_test = train_test_split(data[training_features], data[predictor], test_size=0.8, random_state=42)
 
-print(X_train)
-
 # Define the random forest model
 RF_reg = RandomForestRegressor(n_estimators=500, random_state=42, verbose=2, n_jobs=-1)
 # Fit the model with the training data
@@ -75,18 +74,78 @@ print('The average bias is: {}'.format(np.average(bias)))
 print('The bias with outliars removed is: {}'.format(np.average(filtered_bias)))
 print('The outlier percentage is: {}%'.format(100.*(len(bias)-len(filtered_bias))/len(bias)))
 
+outfolder = 'plots/'
+
+# Plot training data spectroscopic and photometric redshift
 plt.scatter(y_train, train_predict)
 plt.plot(y_train, y_train)
 plt.xlabel('Zspec')
 plt.ylabel('Zphot')
-plt.savefig('test.png')
+plt.savefig(outfolder + 'test.png')
+plt.clf()
+
+# Heatmap of above
+fig, ax = plt.subplots()
+nbins = 75
+h = ax.hist2d(y_train, train_predict, bins=(nbins, nbins), norm=LogNorm())
+
+plt.xlabel('Zspec')
+plt.ylabel('Zphot')
+fig.colorbar(h[3], ax=ax)
+lims = [
+    np.min([ax.get_xlim(), ax.get_ylim()]),  # min of both axes
+    np.max([ax.get_xlim(), ax.get_ylim()]),  # max of both axes
+]
+plt.plot(lims, lims, linestyle='--', color='black', zorder=100)
+plt.xlim(0, 1)
+plt.ylim(0, 1)
+
+# Add in 1 standard deviation lines
+stds = []
+means = []
+for i in range(len(h[1]) - 1):
+    stds.append(np.std(train_predict[(y_train >= h[1][i]) & (y_train < h[1][i+1])]))
+    means.append(np.average(train_predict[(y_train >= h[1][i]) & (y_train < h[1][i+1])]))
+means, stds = np.asarray(means), np.asarray(stds)
+plt.plot(h[1][:-1], means + 1.*stds, linestyle='--', color='red', zorder=100)
+plt.plot(h[1][:-1], means - 1.*stds, linestyle='--', color='red', zorder=100)
+plt.plot(h[1][:-1], means, color='red', zorder=100)
+
+plt.savefig(outfolder + 'hist.png')
 plt.clf()
 
 plt.scatter(y_test, test_predict)
 plt.plot(y_test, y_test)
 plt.xlabel('Zspec')
 plt.ylabel('Zphot')
-plt.savefig('test2.png')
+plt.savefig(outfolder + 'test2.png')
+plt.clf()
+
+fig, ax = plt.subplots()
+h = plt.hist2d(y_test, test_predict, bins=(nbins, nbins), norm=LogNorm())
+plt.xlabel('Zspec')
+plt.ylabel('Zphot')
+fig.colorbar(h[3], ax=ax)
+lims = [
+    np.min([ax.get_xlim(), ax.get_ylim()]),  # min of both axes
+    np.max([ax.get_xlim(), ax.get_ylim()]),  # max of both axes
+]
+plt.plot(lims, lims, linestyle='--', color='black', zorder=100)
+plt.xlim(0, 1)
+plt.ylim(0, 1)
+
+# Add in 1 standard deviation lines
+stds = []
+means = []
+for i in range(len(h[1]) - 1):
+    stds.append(np.std(test_predict[(y_test >= h[1][i]) & (y_test < h[1][i+1])]))
+    means.append(np.average(test_predict[(y_test >= h[1][i]) & (y_test < h[1][i+1])]))
+means, stds = np.asarray(means), np.asarray(stds)
+plt.plot(h[1][:-1], means + 1.*stds, linestyle='--', color='red', zorder=100)
+plt.plot(h[1][:-1], means - 1.*stds, linestyle='--', color='red', zorder=100)
+plt.plot(h[1][:-1], means, color='red', zorder=100)
+
+plt.savefig(outfolder + 'hist2.png')
 plt.clf()
 
 plt.scatter(y_test, bias)
@@ -94,6 +153,6 @@ plt.axhline(-3. * bias_std)
 plt.axhline(3. * bias_std)
 plt.xlabel('Zspec')
 plt.ylabel('Bias')
-plt.savefig('bias.png')
+plt.savefig(outfolder + 'bias.png')
 
 joblib.dump(RF_reg, './models/test_model.joblib')

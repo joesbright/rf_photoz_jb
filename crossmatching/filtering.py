@@ -11,17 +11,29 @@ xmatched = xmatched.sample(frac=1, random_state=42).reset_index(drop=True)
 
 # Only keep primary detections
 filtered_xmatched = xmatched[xmatched['primaryDetection'] == 1]
-# Only keep redshifts above 0
-filtered_xmatched = filtered_xmatched[filtered_xmatched['z'] > 0]
+# Only keep redshifts above 0 and below 1
+filtered_xmatched = filtered_xmatched[filtered_xmatched['z'] > 0.]
+filtered_xmatched = filtered_xmatched[filtered_xmatched['z'] < 1.]
 # Filter classes
 filtered_xmatched = filtered_xmatched[filtered_xmatched['class'] == 'GALAXY']
 # Filter stars
 filtered_xmatched = filtered_xmatched[filtered_xmatched['ps1dr2_p_star'] < 0.5]
 
-filtered_xmatched['unwise_w1_mag_ab'] = filtered_xmatched.replace('None', np.nan)
+filtered_xmatched['gmomentXX'] = filtered_xmatched['gmomentXX'].fillna(np.average(filtered_xmatched['gmomentXX'][~filtered_xmatched['gmomentXX'].isnull()]))
+filtered_xmatched['gmomentXY'] = filtered_xmatched['gmomentXY'].fillna(np.average(filtered_xmatched['gmomentXY'][~filtered_xmatched['gmomentXY'].isnull()]))
+filtered_xmatched['rmomentXX'] = filtered_xmatched['rmomentXX'].fillna(np.average(filtered_xmatched['rmomentXX'][~filtered_xmatched['rmomentXX'].isnull()]))
+filtered_xmatched['rmomentXY'] = filtered_xmatched['rmomentXY'].fillna(np.average(filtered_xmatched['rmomentXY'][~filtered_xmatched['rmomentXY'].isnull()]))
+filtered_xmatched['imomentXX'] = filtered_xmatched['imomentXX'].fillna(np.average(filtered_xmatched['imomentXX'][~filtered_xmatched['imomentXX'].isnull()]))
+filtered_xmatched['imomentXY'] = filtered_xmatched['imomentXY'].fillna(np.average(filtered_xmatched['imomentXY'][~filtered_xmatched['imomentXY'].isnull()]))
+filtered_xmatched['zmomentXX'] = filtered_xmatched['zmomentXX'].fillna(np.average(filtered_xmatched['zmomentXX'][~filtered_xmatched['zmomentXX'].isnull()]))
+filtered_xmatched['zmomentXY'] = filtered_xmatched['zmomentXY'].fillna(np.average(filtered_xmatched['zmomentXY'][~filtered_xmatched['zmomentXY'].isnull()]))
+filtered_xmatched['ymomentXX'] = filtered_xmatched['ymomentXX'].fillna(np.average(filtered_xmatched['ymomentXX'][~filtered_xmatched['ymomentXX'].isnull()]))
+filtered_xmatched['ymomentXY'] = filtered_xmatched['ymomentXY'].fillna(np.average(filtered_xmatched['ymomentXY'][~filtered_xmatched['ymomentXY'].isnull()]))
+
+filtered_xmatched['unwise_w1_mag_ab'] = filtered_xmatched['unwise_w1_mag_ab'].replace('None', np.nan)
 filtered_xmatched['unwise_w1_mag_ab'] = pd.to_numeric(filtered_xmatched['unwise_w1_mag_ab'])
 
-filtered_xmatched['unwise_w2_mag_ab'] = filtered_xmatched.replace('None', np.nan)
+filtered_xmatched['unwise_w2_mag_ab'] = filtered_xmatched['unwise_w2_mag_ab'].replace('None', np.nan)
 filtered_xmatched['unwise_w2_mag_ab'] = pd.to_numeric(filtered_xmatched['unwise_w2_mag_ab'])
 
 # Fill nans with the average of the parameter
