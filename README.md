@@ -9,7 +9,12 @@ This project will include data cleaning of the unWISE and panSTARRS data, combin
 The first data catalog used in this project is the unWISE catalog (https://catalog.unwise.me/catalogs.html) crossmatched with the SDSS source catalog ().
 
 ### unWISE column headers
-*
+`unwise_ra` : blah
 
 ### SDSS column headers
-*
+`sdss_ra`
+
+### Unknown column headers
+`spec_obj_id`
+`target_obj_id`
+`objid`
