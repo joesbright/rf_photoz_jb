@@ -5,8 +5,9 @@ Photometric redfhit calculations using machine learning (random forest) techniqu
 This project will include data cleaning of the unWISE and panSTARRS data, combining the data to match sources, and engineering colour features from the various filter magnitudes. These data will then be split into a training and test dataset to train, optimize and evaluate machine learning models.
 
 # The Data
-## unWISE/SDSS
-The first data catalog used in this project is the unWISE catalog (https://catalog.unwise.me/catalogs.html) crossmatched with the SDSS source catalog ().
+Data from unWISE  : https://catalog.unwise.me/catalogs.html.
+Data from SDSS data release 16  : 
+Data from PanSTARRS : https://outerspace.stsci.edu/display/PANSTARRS/PS1+Source+extraction+and+catalogs.
 
 ### unWISE column headers
 `unwise_decl` : declination(degree)  
@@ -49,8 +50,25 @@ The first data catalog used in this project is the unWISE catalog (https://catal
 `sdss_ra` : Right ascension  
 `sdss_decl` : Declination
 
-### Pan-STARRS colum headers
+### Pan-STARRS colum headers (* indicates further info on catalog page)
 `objid` : Unique object identifier  : DEFAULT=NA  
+`qualityFlag` : Subset of objinfoFlag denoting whether this object is real of a likely false positive : DEFAULT=0  
+`raMean`  : Right ascension from single epoch detections (weighted mean) in equinox J2000 at the mean epoch given by epochMEAN  : DEFAULT=-999    
+`decMean` : Declination from single epoch detections (weighted mean) in equiniox J2000 at the mean epoch given by epochMean : DEFAULT=-999  
+`raMeanErr` : Right ascension standard deviation from single epoch detections : DEFAULT=-999  
+`decMeanErr`  : Declination standard deviation from single epoch detections : DEFAULT=-999  
+`epochMean` : Modified Julian Date of the mean epoch corresponding to raMEAN, decMean (equinox J2000)* : DEFAULT=-999  
+`nDetections` : Number of single epoch detections in all filters  : DEFAULT=-999  
+`ng/r/i/z/y`  : Number of single epoch detections in g/r/i/z/y filter : DEFAULT=-999  
+`primaryDetection`  : Identifies if this row is the primary stack detection*  : DEFAULT=255  
+`g/r/i/z/yPSFMag` : PSF magnitude from g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/yPSFMagErr` : Error in PSF magnitude from g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/yKronMag` : Kron magnitude from g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/yKronMagErr` : Kron magnitude from g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/ymomentXX` : Second moment M_xx for g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/ymomentXY` : Second moment M_xy for g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/ymomentYY` : Second moment M_yy for g/r/i/z/y filter stack detection : DEFAULT=-999  
+`g/r/i/z/ymomentR1` : First radial moment for g/r/i/z/y filter stack detection : DEFAULT=-999  
 
 ### Added column headers
 `ps1dr2_angular_separation` : Angular separation between ?? and ??
