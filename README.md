@@ -1,4 +1,4 @@
-# Photometric Redshifts with Pan-STARRS, WISE, and SDSS
+# Photometric Redshifts with Pan-STARRS, (un)WISE, and SDSS
 
 Photometric redfhit calculations using machine learning (random forest) techniques, with data from the panSTARRS and WISE surveys.
 
@@ -6,3 +6,10 @@ This project will include data cleaning of the unWISE and panSTARRS data, combin
 
 # The Data
 ## unWISE/SDSS
+The first data catalog used in this project is the unWISE catalog (https://catalog.unwise.me/catalogs.html) crossmatched with the SDSS source catalog ().
+
+### unWISE column headers
+*
+
+### SDSS column headers
+*
