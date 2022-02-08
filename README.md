@@ -5,9 +5,9 @@ Photometric redfhit calculations using machine learning (random forest) techniqu
 This project will include data cleaning of the unWISE and panSTARRS data, combining the data to match sources, and engineering colour features from the various filter magnitudes. These data will then be split into a training and test dataset to train, optimize and evaluate machine learning models.
 
 # The Data
-Data from unWISE  : https://catalog.unwise.me/catalogs.html.
-Data from SDSS data release 16  : 
-Data from PanSTARRS : https://outerspace.stsci.edu/display/PANSTARRS/PS1+Source+extraction+and+catalogs.
+Data from unWISE  : https://catalog.unwise.me/catalogs.html.  
+Data from SDSS data release 16  : LINK.  
+Data from PanSTARRS : https://outerspace.stsci.edu/display/PANSTARRS/PS1+Source+extraction+and+catalogs.  
 
 ### unWISE column headers
 `unwise_decl` : declination(degree)  
