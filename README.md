@@ -46,15 +46,18 @@ The first data catalog used in this project is the unWISE catalog (https://catal
 `type`  : Morphological type classification of the object  
 `target_obj_id` : ID of target PhotoObj  
 `spec_obj_id` : Unique ID  
-`objid` : Unique SDSS identifier composed from [skyversion,rerun,run,camcol,field,obj]  
+`sdss_ra` : Right ascension  
+`sdss_decl` : Declination
+
+### Pan-STARRS colum headers
+`objid` : Unique object identifier  : DEFAULT=NA  
+
+### Added column headers
+`ps1dr2_angular_separation` : Angular separation between ?? and ??
 
 ### Unknown column headers (where I have not yet found documentation describing the column explicitely)
-`objid`
-`sdss_ra`
-`sdss_decl`
 `photo_ra`
 `photo_decl`
-`ps1dr2_angular_separation`
 `ps1dr2_baldeschi_quality`
 `ps1dr2_decl`
 `ps1dr2_id`
