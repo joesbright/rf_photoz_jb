@@ -15,12 +15,12 @@ The first data catalog used in this project is the unWISE catalog (https://catal
 `unwise_unwise_objid` : unique object id  
 `unwise_w1/w2_decl12` : positions from individual-image catalogs  
 `unwise_w1/w2_dflux` : uncertainty in flux (statistical only)  
-`unwise_w1/w2_dfluxlbs`  : uncertainty in local-background-subtracted flux
+`unwise_w1/w2_dfluxlbs`  : uncertainty in local-background-subtracted flux  
 `unwise_w1/w2_dspread_model` : uncertainty in spread_model  
 `unwise_w1/w2_dx`  : uncertainty in x  
 `unwise_w1/w2_dy`  : uncertainty in y  
 `unwise_w1/w2_flags_info`  : additional informational flags at central pixel  
-`unwise_w1/w2_flags_unwise`  : unWISE Coadd Flags flags at central pixel
+`unwise_w1/w2_flags_unwise`  : unWISE Coadd Flags flags at central pixel  
 `unwise_w1/w2_flux`  : flux (Vega nMgy)  
 `unwise_w1/w2_fluxlbs` : local-background-subtracted flux (Vega nMgy)  
 `unwise_w1/w2_fracflux`  : fraction of flux in this object's PSF that comes from this object  
