@@ -9,7 +9,7 @@ This project will include data cleaning of the unWISE and panSTARRS data, combin
 The first data catalog used in this project is the unWISE catalog (https://catalog.unwise.me/catalogs.html) crossmatched with the SDSS source catalog ().
 
 ### unWISE column headers
-`unwise_decl` : declination(degree)
+`unwise_decl` : declination(degree)  
 `unwise_primary`: the center of this source is in the primary region of its coadd
 
 ### SDSS column headers
