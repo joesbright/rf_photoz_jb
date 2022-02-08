@@ -37,22 +37,23 @@ The first data catalog used in this project is the unWISE catalog (https://catal
 `unwise_w1/w2_y`  : y coordinate (pix)  
 
 ### SDSS column headers
+`z` : redshift  
+`z_err` : redshift error  
+`z_warning` : Bad redshift if this is non-zero -- see Schlegel data model  
+`class` : Spectroscopic class (GALAXY, QSO, or STAR)  
+`subclass`  : Spectroscopic subclass   
+`survey`  : Survey name  
+`type`  : Morphological type classification of the object  
+`target_obj_id` : ID of target PhotoObj  
+`spec_obj_id` : Unique ID  
+`objid` : Unique SDSS identifier composed from [skyversion,rerun,run,camcol,field,obj]  
 
 ### Unknown column headers (where I have not yet found documentation describing the column explicitely)
-`spec_obj_id`
-`target_obj_id`
 `objid`
 `sdss_ra`
 `sdss_decl`
 `photo_ra`
 `photo_decl`
-`z`
-`z_err`
-`class`
-`subclass`
-`z_warning`
-`type`
-`survey`
 `ps1dr2_angular_separation`
 `ps1dr2_baldeschi_quality`
 `ps1dr2_decl`
