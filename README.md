@@ -13,9 +13,12 @@ The first data catalog used in this project is the unWISE catalog (https://catal
 `unwise_primary`  : the center of this source is in the primary region of its coadd  
 `unwise_ra` : right ascension (degree)  
 `unwise_unwise_objid` : unique object id  
-`unwise_w1_decl12` : positions from individual-image catalogs
+`unwise_w1_decl12` : positions from individual-image catalogs  
 `unwise_w1_dflux` : uncertainty in flux (statistical only)  
 `unwise_w1_dfluxlbs`  : uncertainty in local-background-subtracted flux
+`unwise_w1_dspread_model` : uncertainty in spread_model  
+`unwise_w1_dx`  : uncertainty in x  
+`unwise_w1_dy`  : uncertainty in y  
 
 ### SDSS column headers
 
